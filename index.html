@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101b33" />
+  <meta name="description" content="NextIT 2026 클라우드 보안 온라인 세미나 신청 페이지" />
+  <title>NextIT 2026 | 클라우드로 옮기기 전에, 보안부터</title>
+  <style>
+    :root {
+      --navy: #101b33;
+      --blue: #315efb;
+      --blue-dark: #2349db;
+      --ink: #172033;
+      --muted: #64708a;
+      --surface: #ffffff;
+      --background: #f4f6fb;
+      --success: #176b48;
+      --success-bg: #eaf7f0;
+      --radius: 20px;
+      font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--background);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    button, input, select { font: inherit; }
+
+    .notice-strip {
+      padding: 9px 16px;
+      color: #fff;
+      background: #e45b38;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .site-header {
+      background: var(--navy);
+      color: #fff;
+      padding: 22px 24px;
+    }
+
+    .header-inner, .container {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 24px 72px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(82,125,255,.35), transparent 26%),
+        radial-gradient(circle at 12% 100%, rgba(48,94,251,.25), transparent 30%),
+        linear-gradient(125deg, #101b33 0%, #172b50 58%, #1b3260 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -100px;
+      bottom: -190px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.025),
+                  0 0 0 75px rgba(255,255,255,.02);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1080px, 100%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: #c8d5ff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: #7e9aff;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.2;
+      letter-spacing: -.065em;
+      font-weight: 900;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: 22px 0 0;
+      color: #d6def0;
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.8;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .meta-chip {
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 34px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      color: #16234a;
+      background: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 900;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 24px rgba(0,0,0,.18);
+    }
+
+    main { padding: 54px 0 76px; }
+
+    .intro {
+      max-width: 800px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+
+    .intro h2, .form-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.3;
+      letter-spacing: -.05em;
+    }
+
+    .intro p {
+      margin: 15px auto 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      align-items: start;
+      gap: 24px;
+    }
+
+    .info-card, .form-card {
+      border: 1px solid #e8ecf3;
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 12px 34px rgba(24,42,77,.055);
+    }
+
+    .info-card { padding: 28px; }
+
+    .info-card h3 {
+      margin: 0 0 20px;
+      color: var(--navy);
+      font-size: 19px;
+      letter-spacing: -.04em;
+    }
+
+    .event-details { margin: 0; }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #edf0f5;
+      font-size: 14px;
+    }
+
+    .detail-row:last-child { border-bottom: 0; }
+
+    .detail-row dt {
+      color: #8791a5;
+      font-weight: 700;
+    }
+
+    .detail-row dd {
+      margin: 0;
+      color: #26324a;
+      font-weight: 700;
+    }
+
+    .program-title { margin-top: 27px !important; }
+
+    .program-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .program-item {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .program-time {
+      color: var(--blue);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .program-desc { color: #59657c; }
+
+    .form-card { padding: 32px; }
+
+    .form-heading { margin-bottom: 26px; }
+
+    .form-heading p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 19px 16px;
+    }
+
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label, .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #29354d;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .required {
+      color: #e45b38;
+      margin-left: 3px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      border: 1px solid #dce2ec;
+      border-radius: 9px;
+      outline: none;
+      color: #1c2941;
+      background: #fff;
+      font-size: 14px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .field input::placeholder { color: #a3adbd; }
+
+    .field input:focus, .field select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(49,94,251,.11);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      min-height: 45px;
+      padding: 11px 12px;
+      border: 1px solid #e1e6ef;
+      border-radius: 9px;
+      color: #526078;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .choice:has(input:checked) {
+      border-color: #9db2ff;
+      color: #2349c7;
+      background: #f2f5ff;
+    }
+
+    .choice input {
+      width: 16px;
+      min-height: 16px;
+      margin: 2px 0 0;
+      accent-color: var(--blue);
+    }
+
+    .hint {
+      margin: 7px 0 0;
+      color: #8993a6;
+      font-size: 12px;
+    }
+
+    .submit-button {
+      display: flex;
+      width: 100%;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 26px;
+      border: 0;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .submit-button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .privacy-note {
+      margin: 12px 0 0;
+      color: #98a1b1;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .success-message {
+      display: none;
+      padding: 34px 22px;
+      border: 1px solid #cce9d9;
+      border-radius: 14px;
+      color: var(--success);
+      background: var(--success-bg);
+      text-align: center;
+    }
+
+    .success-message .check {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      color: #fff;
+      background: #269765;
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .success-message h3 {
+      margin: 0 0 7px;
+      font-size: 20px;
+    }
+
+    .success-message p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 24px 20px;
+      color: #8f9ab0;
+      background: #101b33;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 780px) {
+      .hero { padding: 58px 22px 56px; }
+      main { padding: 42px 0 56px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .intro { margin-bottom: 30px; }
+      .info-card { padding: 24px; }
+      .form-card { padding: 25px 22px; }
+    }
+
+    @media (max-width: 520px) {
+      .header-inner, .container {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .site-header { padding: 17px 14px; }
+      .hero { padding: 48px 20px 46px; }
+      h1 { font-size: 37px; }
+      .hero-copy { font-size: 14px; }
+      .hero-meta { gap: 7px; margin-top: 24px; }
+      .meta-chip { padding: 8px 11px; font-size: 12px; }
+      .hero-cta { width: 100%; margin-top: 26px; }
+      .intro p { font-size: 14px; text-align: left; }
+      .form-grid { grid-template-columns: 1fr; gap: 16px; }
+      .field.full { grid-column: auto; }
+      .choice-grid { grid-template-columns: 1fr; }
+      .program-item { grid-template-columns: 96px 1fr; }
+      .detail-row { grid-template-columns: 66px 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="notice-strip">교육용 예시 페이지입니다</div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">D</span> 두두솔루션
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">NEXTIT 2026 · ONLINE SEMINAR</div>
+
+      <h1>클라우드로 옮기기 전에,<br />보안부터</h1>
+
+      <p class="hero-copy">
+        클라우드 전환을 계획하고 계신가요?
+        클라우드 환경에서는 전환만큼이나 안전한 보안 체계 구축이 중요합니다.
+        클라우드 보안 위협과 대응 방안, 실제 적용 사례를 확인해 보세요.
+      </p>
+
+      <div class="hero-meta" aria-label="행사 정보">
+        <span class="meta-chip">11월 19일(목) 오후 2시</span>
+        <span class="meta-chip">온라인 라이브 · 90분</span>
+        <span class="meta-chip">참가비 무료</span>
+      </div>
+
+      <a class="hero-cta" href="#registration">
+        세미나 신청하기 <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="section-kicker">ABOUT THE SEMINAR</p>
+
+        <h2 id="intro-title">
+          클라우드 전환, 보안 준비부터 시작하세요
+        </h2>
+
+        <p>
+          이번 세미나에서는 클라우드 전환 과정에서 발생할 수 있는
+          보안 위협과 대응 방안을 살펴봅니다.
+          실제 적용 사례와 운영 전략을 통해 우리 회사에 필요한
+          보안 준비 사항을 확인해 보세요.
+        </p>
+      </section>
+
+      <div class="content-grid">
+        <aside class="info-card" aria-label="행사 상세 정보">
+          <h3>행사 안내</h3>
+
+          <dl class="event-details">
+            <div class="detail-row">
+              <dt>행사명</dt>
+              <dd>NextIT 2026</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>일시</dt>
+              <dd>
+                2026년 11월 19일(목)<br />
+                오후 2:00~3:30
+              </dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>진행</dt>
+              <dd>온라인 라이브</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>참가비</dt>
+              <dd>무료</dd>
+            </div>
+
+            <div class="detail-row">
+              <dt>대상</dt>
+              <dd>기업 IT·보안 담당자 및 팀장</dd>
+            </div>
+          </dl>
+
+          <h3 class="program-title">프로그램</h3>
+
+          <div class="program-list">
+            <div class="program-item">
+              <span class="program-time">14:00~14:10</span>
+              <span class="program-desc">행사 소개 및 클라우드 보안의 중요성</span>
+            </div>
+
+            <div class="program-item">
+              <span class="program-time">14:10~15:00</span>
+              <span class="program-desc">클라우드 보안 위협 사례와 대응 방안</span>
+            </div>
+
+            <div class="program-item">
+              <span class="program-time">15:00~15:20</span>
+              <span class="program-desc">실제 도입 사례 및 운영 전략</span>
+            </div>
+
+            <div class="program-item">
+              <span class="program-time">15:20~15:30</span>
+              <span class="program-desc">실시간 Q&amp;A 및 상담 안내</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="form-card" id="registration" aria-labelledby="form-title">
+          <div class="form-heading">
+            <p class="section-kicker">REGISTRATION</p>
+            <h2 id="form-title">참가 신청</h2>
+            <p>아래 정보를 입력해 주세요. 항목은 교육용 예시로 구성되어 있습니다.</p>
+          </div>
+
+          <form id="registrationForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">
+                  이름<span class="required">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="이름을 입력해 주세요"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="company">
+                  회사명<span class="required">*</span>
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  placeholder="회사명을 입력해 주세요"
+                  autocomplete="organization"
+                  required
+                />
+              </div>
+
+              <div class="field full">
+                <label for="role">
+                  부서와 직무<span class="required">*</span>
+                </label>
+                <input
+                  id="role"
+                  name="role"
+                  type="text"
+                  placeholder="예: IT인프라팀 / 보안 담당"
+                  required
+                />
+              </div>
+
+              <div class="field full">
+                <label for="email">
+                  업무용 이메일<span class="required">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@company.com"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <fieldset
+                class="field full"
+                style="padding:0;border:0;margin:0;"
+              >
+                <legend class="field-label">
+                  관심 분야<span class="required">*</span>
+                </legend>
+
+                <div class="choice-grid">
+                  <label class="choice">
+                    <input type="checkbox" name="interest" value="클라우드 전환" />
+                    클라우드 전환
+                  </label>
+
+                  <label class="choice">
+                    <input type="checkbox" name="interest" value="클라우드 보안" />
+                    클라우드 보안
+                  </label>
+
+                  <label class="choice">
+                    <input type="checkbox" name="interest" value="데이터 보호 및 관리" />
+                    데이터 보호 및 관리
+                  </label>
+
+                  <label class="choice">
+                    <input type="checkbox" name="interest" value="보안 운영 및 위협 대응" />
+                    보안 운영 및 위협 대응
+                  </label>
+                </div>
+
+                <p class="hint">관심 있는 분야를 하나 이상 선택해 주세요.</p>
+              </fieldset>
+
+              <div class="field full">
+                <label for="timing">
+                  도입 검토 시기<span class="required">*</span>
+                </label>
+
+                <select id="timing" name="timing" required>
+                  <option value="" selected disabled>
+                    도입 검토 시기를 선택해 주세요
+                  </option>
+                  <option value="3개월 이내">3개월 이내</option>
+                  <option value="6개월 이내">6개월 이내</option>
+                  <option value="1년 이내">6개월 초과~1년 이내</option>
+                  <option value="1년 이후">1년 이후</option>
+                  <option value="미정">아직 미정</option>
+                  <option value="도입 계획 없음">현재 도입 계획 없음</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="submit-button" type="submit">
+              신청하기
+            </button>
+
+            <p class="privacy-note">
+              교육용 페이지이며 입력 정보는 실제로 전송되거나 저장되지 않습니다.
+            </p>
+          </form>
+
+          <div
+            class="success-message"
+            id="successMessage"
+            role="status"
+            aria-live="polite"
+          >
+            <div class="check" aria-hidden="true">✓</div>
+            <h3>신청이 완료되었습니다!</h3>
+            <p>NextIT 2026 세미나에 관심을 가져주셔서 감사합니다.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 두두솔루션 · NextIT 2026 온라인 세미나
+  </footer>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const successMessage = document.getElementById('successMessage');
+
+    const interestCheckboxes = [
+      ...document.querySelectorAll('input[name="interest"]')
+    ];
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      // 실제 서버 전송 없이 입력값만 확인
+      const hasInterest = interestCheckboxes.some(
+        (checkbox) => checkbox.checked
+      );
+
+      if (!hasInterest) {
+        alert('관심 분야를 하나 이상 선택해 주세요.');
+        interestCheckboxes[0].focus();
+        return;
+      }
+
+      if (!form.reportValidity()) return;
+
+      // 신청 폼을 숨기고 완료 메시지 표시
+      form.hidden = true;
+      successMessage.style.display = 'block';
+
+      successMessage.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    });
+  </script>
+</body>
+</html>
